@@ -1,0 +1,134 @@
+% Beamer settings
+\documentclass[
+10pt,
+aspectratio=169,
+%notes
+]{beamer}
+\usetheme[progressbar=head]{metropolis}
+\definecolor{BlueTOL}{HTML}{222255}
+\definecolor{BrownTOL}{HTML}{666633}
+\definecolor{GreenTOL}{HTML}{225522}
+\setbeamercolor{normal text}{fg=BlueTOL,bg=white}
+\setbeamercolor{alerted text}{fg=BrownTOL}
+\setbeamercolor{example text}{fg=GreenTOL}
+
+\setbeamercolor{block title alerted}{use=alerted text,
+	fg=alerted text.fg,
+	bg=}
+\setbeamercolor{block body alerted}{use={block title alerted, alerted text},
+	fg=alerted text.fg,
+	bg=}
+\setbeamercolor{block title example}{use=example text,
+	fg=example text.fg,
+	bg=}
+\setbeamercolor{block body example}{use={block title example, example text},
+	fg=example text.fg,
+	bg=}
+
+
+
+\setbeamercovered{transparent=10}
+\setbeamertemplate{frame numbering}[fraction]
+% \useoutertheme[subsection=false]{miniframes}
+% \usefonttheme{professionalfonts} % using non standard fonts for beamer
+% \usefonttheme{serif}
+\setsansfont{Lato}
+
+%footline
+\setbeamertemplate{footline}
+{%
+	\leavevmode%
+	\hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{author in head/foot}%
+			\mytitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortauthor\hfill\insertframenumber/\inserttotalframenumber
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+
+\setbeamertemplate{section in toc}{\hspace*{1em}\inserttocsectionnumber.~\inserttocsection\par}
+\setbeamertemplate{subsection in toc}{\hspace*{2em}\inserttocsectionnumber.\inserttocsubsectionnumber.~\inserttocsubsection\par}
+
+% Packages
+
+
+\usepackage{ctex}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{soul}
+\usetikzlibrary{quotes,angles}
+
+% side by side display
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen}
+\makeatletter 
+\def\beamer@framenotesbegin{% at beginning of slide
+	\usebeamercolor[fg]{normal text}
+	\gdef\beamer@noteitems{}% 
+	\gdef\beamer@notes{}% 
+}
+\makeatother
+
+
+% Title of the presentation
+
+\newcommand{\mytitle}{My Slide}
+
+\setbeamerfont{subsection in toc}{size=\small}
+
+\AtBeginSection[]{%
+	\begin{frame}%
+		\frametitle{Outline}%
+		\textbf{\tableofcontents[currentsection]} %
+	\end{frame}%
+}
+\AtBeginSubsection[]{%
+	\begin{frame}%
+		\frametitle{Outline}%
+		\textbf{\tableofcontents[currentsection,currentsubsection]} %
+	\end{frame}%
+}
+
+\title{\mytitle}
+\author{Chengkun Li}
+
+\institute{Beijing Institute of Technology}
+\subject{}
+\date{\today}
+
+
+
+\begin{document}
+	
+	
+	
+	\metroset{block=fill}
+	
+	\setbeamercolor{block title alerted}{use=alerted text,
+		fg=alerted text.fg,
+		bg=alerted text.bg!80!alerted text.fg}
+	\setbeamercolor{block body alerted}{use={block title alerted, alerted text},
+		fg=alerted text.fg,
+		bg=block title alerted.bg!50!alerted text.bg}
+	\setbeamercolor{block title example}{use=example text,
+		fg=example text.fg,
+		bg=example text.bg!80!example text.fg}
+	\setbeamercolor{block body example}{use={block title example, example text},
+		fg=example text.fg,
+		bg=block title example.bg!50!example text.bg}
+	
+	\begin{frame}[plain]
+		\titlepage
+	\end{frame}
+	
+	
+	
+	
+	\begin{frame}[standout]
+		\usebeamercolor[fg]{palette primary}
+		Thank you!
+	\end{frame}	
+	
+	
+\end{document}
