@@ -1,0 +1,393 @@
+% Copyright (C) 2015 by Ivan Valbusa 
+% <ivan dot valbusa at univr dot it>
+% -------------------------------------------------------
+% 
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+% 
+%  Author: Ivan Valbusa
+%          ivan dot valbusa at univr dot it
+% 
+%  This work has the LPPL maintenance status "author-maintained".
+
+
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+\ProvidesPackage{beamerthemeVerona}[2015/12/23 v.0.2 Themes for the Beamer class]%
+
+\mode<presentation>
+
+\RequirePackage{fontspec}
+
+\usefonttheme{professionalfonts}
+
+\setbeamerfont{normal text}{shape=\upshape, series=\mdseries}
+
+\newif\ifbeamer@showheader
+\newif\ifbeamer@red
+\newif\ifbeamer@purple
+\newif\ifbeamer@gray
+\newif\ifbeamer@colorblocks
+\newif\ifbeamer@graytitle
+\newif\ifbeamer@sidebar
+\newif\ifbeamer@noframetitlerule
+\beamer@showheaderfalse
+\beamer@redfalse
+\beamer@purplefalse
+\beamer@grayfalse
+\beamer@colorblocksfalse
+\beamer@graytitlefalse
+\beamer@sidebarfalse
+\beamer@noframetitlerulefalse
+\DeclareOptionBeamer{showheader}{\beamer@showheadertrue}
+\DeclareOptionBeamer{red}{\beamer@redtrue}
+\DeclareOptionBeamer{purple}{\beamer@purpletrue}
+\DeclareOptionBeamer{gray}{\beamer@graytrue}
+\DeclareOptionBeamer{colorblocks}{\beamer@colorblockstrue}
+\DeclareOptionBeamer{graytitle}{\beamer@graytitletrue}
+\DeclareOptionBeamer{sidebar}{\beamer@sidebartrue}
+\DeclareOptionBeamer{noframetitlerule}{\beamer@noframetitleruletrue}
+\ProcessOptionsBeamer
+
+% Packages
+\RequirePackage{tikz}
+\RequirePackage{tcolorbox}
+  \tcbuselibrary{skins}
+
+\def\lecturename{Lezione}
+
+% ******************
+% colortheme
+% ******************
+\definecolor{Veronagreen}    {RGB}{0,152,0}
+\definecolor{Veronablue}     {RGB}{0,51,102}
+\definecolor{Veronaorange}   {RGB}{238,118,0}
+\definecolor{Veronared}      {RGB}{152,0,0}
+\definecolor{Veronagray}     {RGB}{100,100,105}
+\definecolor{Veronagrayblue} {RGB}{0,128,128}
+\definecolor{Veronagraygreen}{RGB}{128,128,0}
+%\definecolor{DarkPurple}     {RGB}{142, 36, 170}
+\definecolor{DarkPurple}     {RGB}{2, 74, 21}
+\definecolor{LightPurple}    {RGB}{57, 130, 7}
+\ifbeamer@graytitle
+   \setbeamercolor*{frametitle}{fg=Veronagray!80}
+  \else
+\fi
+\ifbeamer@red
+    \setbeamercolor{alerted text}{fg=Veronablue}
+    \setbeamercolor{example text}{fg=Veronagreen}
+    \setbeamercolor{structure}{fg=Veronared}
+\else
+\ifbeamer@purple
+	\setbeamercolor{alerted text}{fg=Veronared}
+	\setbeamercolor{example text}{fg=Veronagreen}
+	\setbeamercolor{structure}{fg=DarkPurple}
+\else
+  \ifbeamer@gray
+%    \setbeamercolor*{normal text}{fg=black!70}
+    \setbeamercolor*{alerted text}{fg=Veronagrayblue}
+    \setbeamercolor*{example text}{fg=Veronagraygreen}
+    \setbeamercolor*{structure}{fg=Veronagray}
+\ifbeamer@graytitle
+   \setbeamercolor*{frametitle}{fg=Veronagray!90}
+  \else
+\fi
+  \else
+    \setbeamercolor*{alerted text}{fg=Veronared}
+    \setbeamercolor*{example text}{fg=Veronagreen}
+    \setbeamercolor*{structure}{fg=Veronablue}
+  \fi
+\fi
+\fi
+\setbeamercolor*{author in head/foot}{fg=Veronagray!80,bg=}
+\setbeamercolor*{title in head/foot}{fg=Veronagray!80,bg=}
+\setbeamercolor*{date in head/foot}{fg=Veronagray!80,bg=}
+\setbeamercolor*{section in head/foot}{fg=Veronagray!80,bg=}
+\setbeamercolor*{subsection in head/foot}{fg=Veronagray!80,bg=}
+\setbeamercolor*{subtitle}{fg=white}
+\setbeamercolor*{title}{fg=white,bg=Veronagray!75}
+\setbeamercolor*{sectiontitle}{fg=white,bg=DarkPurple!75}
+\setbeamercolor*{author}{fg=gray}
+\setbeamercolor*{date}{fg=gray}
+% blocks
+\ifbeamer@colorblocks
+\setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!30!bg}
+\setbeamercolor{block title alerted}{use=alerted text,fg=alerted text.fg,bg=alerted text.fg!30!bg}
+\setbeamercolor{block title example}{use=example text,fg=example text.fg,bg=example text.fg!30!bg}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=structure.fg!10!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=alerted text.fg!10!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=example text.fg!10!bg}
+\else
+\fi
+% ******************
+% fonttheme
+% ******************
+\setbeamerfont*{tiny structure}{series=\mdseries,size=\fontsize{6}{6}}
+\setbeamerfont*{title}{size=\LARGE,series=\bfseries,family=\lishu}
+\setbeamerfont*{subtitle}{size=\normalsize,series=\mdseries}
+\setbeamerfont*{frametitle}{size=\Large,series=\bfseries,family=\lishu}
+\setbeamerfont{framesubtitle}{series=\mdseries}
+\setbeamerfont*{author}{size=\small,series=\bfseries}
+\setbeamerfont*{date}{size=\footnotesize}
+\setbeamerfont*{block title}{size={}}
+% ******************
+% innertheme
+% ******************
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[square]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+%\setbeamercolor{quotation}{bg=black!5}
+\setbeamertemplate{quotation begin}
+{\begin{tcolorbox}[blanker,borderline west={3pt}{-2pt}{black!15},
+before skip=\baselineskip,
+after skip=\baselineskip
+]}
+\setbeamertemplate{quotation end}
+{\end{tcolorbox}%
+\ifx\autorecitazione\@empty\else\vskip-1ex
+\hfill\footnotesize(\autorecitazione)\fi
+%{\scriptsize\tikz[overlay]\node[fill=white] at ([yshift=1.5em,xshift=-1cm]interior.south east){\autorecitazione};}
+}
+%\setbeamertemplate{quotation begin}
+%{\beamercolorbox[vmode]{quotation}%
+%%\tikz[overlay]{\draw[draw=black!20,very thick] (0,0) -- (\textwidth,0) ;}
+%}
+%
+%\setbeamertemplate{quotation end}
+%{%
+%%\tikz[overlay]{\draw[draw=black!20,yshift=1ex,very thick] (0,0) -- (\textwidth,0) node[anchor=north east] {\footnotesize\autorecitazione} ;}
+%\vskip-.3em\hfill\scriptsize\usebeamerfont{quotation}(\autorecitazione)\endbeamercolorbox}
+\newenvironment<>{citazione}[1][]
+{\def\autorecitazione{#1}%
+\actionenv#2%
+  \usebeamertemplate{quotation begin}
+  \usebeamerfont{quotation}%
+  \usebeamercolor{quotation}%
+  \list{}{\listparindent 0em%
+    \itemindent    \listparindent
+    \leftmargin   3pt
+     \rightmargin   0pt
+    \parsep        \z@ \@plus\p@}%
+\item\relax}
+{\endlist
+\usebeamertemplate{quotation end}\endactionenv}
+\let\quotation\citazione
+% ******************
+% outertheme
+% ******************
+\def\structureA{structure.fg!70}
+\def\structureB{structure.fg}
+
+\setbeamertemplate{navigation symbols}{}
+
+\let\oldtitlegraphic\titlegraphic
+\renewcommand{\titlegraphic}[3][]{%
+	\oldtitlegraphic{\node[inner sep=10pt,anchor=north west,#3] at (titlepage) {\includegraphics[#1]{#2}}}}
+% ---------------------
+% The ‘sidebar' variant
+% ---------------------
+\ifbeamer@sidebar
+\setbeamersize{sidebar width right=5cm}
+
+\addtobeamertemplate{background}{%
+    \begin{tikzpicture}[overlay, remember picture] 
+      \node[inner sep=0pt,xshift=-\dimexpr(\beamer@rightsidebar-1mm)] at (current page.north east) (graphic) {};
+    \end{tikzpicture}
+    }
+
+\newcommand<>{\sidegraphics}[3][]{%
+  \tikz[overlay, remember picture] {
+    \node[inner sep=0pt,anchor=north west,#3] at (graphic)
+      {\only#4{\includegraphics[#1]{#2}}};}\vskip-\baselineskip}
+% ---------------------
+% The default variant
+% ---------------------
+\else
+\def\sidegraphics#1{\PackageError{Verona}{%
+Command \noexpand\sidegraphics\MessageBreak
+\noexpand\sidegraphics command is defined only\MessageBreak
+ with the 'sidebar' option}}
+% headline
+\ifbeamer@showheader
+\setbeamertemplate{headline}
+{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,right]{section in head/foot}%
+    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,left]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+  \end{beamercolorbox}}%
+  \vskip0pt%
+\begin{tikzpicture}[overlay]
+\draw[draw=\structureA] (0,0) -- (6.3cm,0) -- (6.3cm,1mm);
+\draw[draw=\structureA] (6.5,1mm) -- (6.5,0) -- (12.7cm,0);
+\draw[fill=\structureA,draw=\structureA,yshift=-.5mm] (0,0) rectangle ++ (1mm,1mm);
+\draw[fill=\structureA,draw=\structureA,yshift=-.5mm] (12.69cm,0) rectangle ++ (1mm,1mm);
+\end{tikzpicture}
+}
+\else
+\fi
+% ******************
+% footline
+% ******************
+\def\lectureinfoot{%
+    \ifnum\thelecture=0\else
+    %\textcolor{structure.fg}{$\cdot$\thelecture$\cdot$}
+    \tikz[overlay]\node[yshift=2pt,text=structure.fg] 
+      {\bf$\cdot$\thelecture$\cdot$};
+   \fi}
+\setbeamertemplate{footline}
+{%
+\begin{tikzpicture}[overlay]
+\draw[draw=structure.fg!35] (0mm,3mm) -- (16.3cm,3mm);
+\draw[fill=\structureA,draw=\structureA,yshift=-.5mm] (0mm,3mm) rectangle ++ (1mm,1mm);
+\draw[fill=\structureA,draw=\structureA,yshift=-.5mm] (15.89cm,3mm) rectangle ++ (1mm,1mm);
+\end{tikzpicture}
+  \leavevmode%
+  \hfill\hbox{%
+  \begin{beamercolorbox}[wd=.3333333\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\hspace*{1ex}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+    \insertshortdate{}\hspace*{2em}
+ \lectureinfoot\quad\insertframenumber~\tikz[overlay]\draw[draw=\structureA] (0,-.5mm) -- (0,1.6mm);~\inserttotalframenumber\hspace*{2mm} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\fi
+% ******************
+% title page
+% ******************
+\setbeamertemplate{title page}
+{
+  \begingroup
+  \begin{tikzpicture}[overlay,remember picture]
+  \draw[fill=structure.fg,draw=none] (current page.north west) rectangle (\paperwidth,-.3cm);
+		\node[xshift=-5cm,yshift=-4.1cm] 
+		 	at (current page.north east) (titlepage) {};
+	  \inserttitlegraphic;
+%	  \node[anchor=north east] at (\paperwidth-10pt,.5\paperheight-25pt) {\includegraphics[width=3cm]{thu3.png}};
+		\draw[line width=4mm,xshift=-3mm,draw=structure.fg!80,yshift=-1mm] 
+		 	(0,0) -- (\paperwidth,0) {};
+\node[anchor=south west,align=left] at (0,.25) {% 
+\parbox{12cm}{%     
+\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else\vskip.5ex%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}
+        \insertsubtitle\par}%
+      \fi}};
+\node[anchor=north west,align=left] at (0,-.9) {%
+\parbox{7cm}{
+      {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor}\vskip-.5ex
+      {\usebeamerfont{author}\usebeamercolor[fg]{author}\scriptsize\ttfamily\@mail}
+    \vskip3mm
+      \usebeamerfont{institute}\usebeamercolor[fg]{author}\insertinstitute
+    \vskip3mm
+      \usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate
+}}; 
+  \end{tikzpicture}
+  \endgroup
+}
+% ******************
+% frametitle
+% ******************
+\newlength{\frametitlesidebar}
+\setlength{\frametitlesidebar}{\dimexpr(\paperwidth-\beamer@rightsidebar-4mm)}
+\setbeamertemplate{frametitle}
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=0.3cm,left,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}%
+    \vbox{}\vskip-1ex%
+    \strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1ex%
+    \if@tempswa\else\vskip-1ex\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+\ifbeamer@noframetitlerule
+\vspace{2ex}
+\else
+\begin{tikzpicture}[overlay]
+\draw[line width=1mm,draw=structure.fg,yshift=.5ex] (-0.5,0) -- (\frametitlesidebar,0);
+\node[anchor=north east] at (\frametitlesidebar-12pt,35pt) {\includegraphics[height=0.78cm]{logo_full.pdf}};
+\end{tikzpicture}
+\vspace{-.5ex}
+\fi
+}
+
+% ******************************************************
+% ******************************************************
+
+\def\beamer@fteright{\vskip0.35cm\advance\leftskip by 1.7cm\advance\rightskip by1.7cm}
+
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+
+% ******************
+% new commands
+% ******************
+\renewcommand{\maketitle}{%
+\begin{frame}[plain]
+\titlepage
+\end{frame}}
+
+\newcommand{\mail}[1]{\def\@mail{#1}}
+\mail{}
+\newcommand\datelecture{\@dblarg\beamer@datelecture}
+\long\def\beamer@datelecture[#1]#2#3#4{
+  \beamer@savemode
+  \mode<all>
+  \refstepcounter{lecture}\date{#2}
+  \def\beamer@currentlecturelabel{#4}
+  \@onelevel@sanitize\beamer@currentlecturelabel
+  \def\beamer@lecturename{#3}
+  \def\beamer@shortlecturename{#1}
+  \ifx\beamer@onlylecture\@empty
+  \else
+    \expandafter\beamer@if@in@clist@TF\expandafter\beamer@onlylecture
+      \expandafter{\beamer@currentlecturelabel}%
+      {\beamer@inlecturetrue}
+      {\beamer@inlecturefalse}
+  \fi
+  \beamer@atbeginlecture
+  \beamer@resumemode
+}
+
+\AtBeginLecture{%
+\begin{frame}[plain]
+\begin{center}
+	\begin{tcolorbox}[blanker,borderline horizontal={3pt}{20pt}{structure.fg}]
+	  \centering\color{structure.fg}\bfseries \lecturename~\thelecture.\quad \insertlecture\\
+	\end{tcolorbox}
+\end{center}
+\end{frame}
+}
+
+
+\mode
+<all>
+
+\endinput
+%%
+%% End of file `beamerthemeVerona.sty'.
+
+
