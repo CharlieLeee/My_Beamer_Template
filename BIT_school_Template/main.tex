@@ -62,6 +62,8 @@ Beijing Institute of Technology}
 \titlegraphic[width=3cm]{logo_01}{}
 
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------- 标题页 ------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +74,20 @@ Beijing Institute of Technology}
 
 \maketitle
 
-
+%%% define code
+\defverbatim[colored]\lstI{
+	\begin{lstlisting}[language=C++,basicstyle=\ttfamily,keywordstyle=\color{red}]
+	int main() {
+	// Define variables at the beginning
+	// of the block, as in C:
+	CStash intStash, stringStash;
+	int i;
+	char* cp;
+	ifstream in;
+	string line;
+	[...]
+	\end{lstlisting}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------- FRAME ------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,9 +159,11 @@ The blocks are shown below
 	\end{figure}
 \end{frame}	
 
-
+\begin{frame}{A Listings Demo}{C++}
+	\lstI
+\end{frame}
 % Thank you page
-\beamertemplateshadingbackground{structure.fg!80}{structure.fg}
+\beamertemplateshadingbackground{structure.fg!90}{structure.fg}
 \begin{frame}[plain]
 	\vfill
 	\centering
