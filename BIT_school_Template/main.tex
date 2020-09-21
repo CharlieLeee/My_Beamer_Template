@@ -3,7 +3,7 @@
 10pt,
 aspectratio=169,
 ]{beamer}
-
+\setbeamercovered{transparent=10}
 \usetheme[
 %  showheader,
 %  red,
@@ -26,6 +26,7 @@ aspectratio=169,
 %
 %\setbeamertemplate{sections/subsections in toc}[ball]
 \usepackage{xeCJK}
+\usepackage{listings}
 \usepackage{caption}
 \usepackage{subcaption}
 \usefonttheme{professionalfonts}
@@ -76,12 +77,71 @@ Beijing Institute of Technology}
 % ----------- FRAME ------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introduction}
+\section{Basics}
+\subsection{Blocks}
+\begin{frame}[c]{Blocks}
+	
+The blocks are shown below
+\begin{block}{Regular Block}
+	Content of a regular block
+\end{block}
 
-\begin{frame}[t]{Introduction}
+\begin{exampleblock}{Example Block}
+	Content of an example block
+\end{exampleblock}
+
+\begin{alertblock}{Alert block}
+	Content of an alert block
+\end{alertblock}
+
+\end{frame}	
+
+\subsection{Enumerate \& Overlays}
+
+\begin{frame}[c]{Enumerate \& Overlays}
 	
-This is a BIT-themed Beamer template
+{\large An Example of \texttt{enumerate}}
+	\begin{enumerate}[<+->]
+		\item First item
+		\item Second item
+		\item Third item
+	\end{enumerate}
+\vfill
+{\large An Example of \texttt{itemize}}	
+	\begin{itemize}[<+->]
+	\item First item
+	\item Second item
+	\item Third item
+	\end{itemize}
+\end{frame}	
+
+\subsection{Two columns}
+\begin{frame}[c]{Two columns}
 	
+\begin{columns}[onlytextwidth]
+	\column{0.4\textwidth}
+	Content for column one
+	\begin{equation}
+	E = mc^2
+	\end{equation}
+	\column{0.4\textwidth}	
+	Content for column two
+	\begin{equation}
+	F=ma
+	\end{equation}
+\end{columns}
+	
+\end{frame}	
+
+\subsection{Figures}
+\begin{frame}[c]{Figures}
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}
+		\draw [help lines,very thick] (0,0) grid (5,4);
+		\end{tikzpicture}
+		\caption{Credits to Ti\textit{k}Z}
+	\end{figure}
 \end{frame}	
 
 
